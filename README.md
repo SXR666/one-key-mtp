@@ -1,6 +1,6 @@
 # ONE-KEY-MTP
 
-安装mtproxy及其守护进程请运行：wget --no-check-certificate -O mtproxy.sh https://raw.githubusercontent.com/chummumm/one-key-mtp/master/mtproxy.sh && bash mtproxy.sh
+安装mtproxy及其守护进程请运行：wget --no-check-certificate -O mtproxy.sh https://raw.githubusercontent.com/SXR666/one-key-mtp/master/mtproxy.sh && bash mtproxy.sh
 
 删除mtproxy及其守护进程请运行：wget --no-check-certificate -O deletemtproxy.sh https://raw.githubusercontent.com/chummumm/one-key-mtp/master/deletemtproxy.sh && bash deletemtproxy.sh
 
@@ -14,5 +14,4 @@
 
 **注意！！！！！使用systemctl status mtproxy查看配置信息显示不全时请使用方向键右键进行查看！！！！！！**
 
-（该脚本仅支持使用systemd的主流linux系统，目前仅支持ipv4）
-
+（该脚本仅支持使用systemd的主流Linux系统）
