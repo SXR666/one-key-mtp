@@ -18,7 +18,7 @@ fi
 if [ -d "/etc/mtproxy" ]; then
   rm -rf /etc/mtproxy
 fi
-git clone https://github.com/chummumm/mtprotoproxy.git /etc/mtproxy
+git clone -b stable https://github.com/alexbers/mtprotoproxy.git /etc/mtproxy
 while :
 do
   echo -n -e "\033[32m请输入mtproxy运行端口:\033[0m"
