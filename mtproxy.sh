@@ -18,14 +18,14 @@ fi
 if [ -d "/etc/mtproxy" ]; then
   rm -rf /etc/mtproxy
 fi
-git clone -b stable https://github.com/alexbers/mtprotoproxy.git /etc/mtproxy
+git clone -b stable https://github.com/SXR666/mtprotoproxy.git /etc/mtproxy
 while :
 do
   echo -n -e "\033[32m请输入mtproxy运行端口:\033[0m"
   read num
   if [ ! -n "$num" ]; then
-    echo -e "\033[32m端口已设置为默认（1973）\033[0m"
-    num=1973
+    echo -e "\033[32m端口已设置为默认（443）\033[0m"
+    num=443
     break
   else
     judge=`echo "$num*1" | bc `
@@ -45,7 +45,7 @@ do
 done
 echo "正在随机生成secret......"
 secret=$(head -c 16 /dev/urandom | xxd -ps)
-sed -i "s/0000000054655212aa12221200000001/$secret/g" /etc/mtproxy/config.py
+sed -i "s/012334sxr666456789fanqiang666def/$secret/g" /etc/mtproxy/config.py
 sed -i 's/"secure": False,/"secure": True,/g' /etc/mtproxy/config.py
 sed -i 's/AD_TAG/#AD_TAG/g' /etc/mtproxy/config.py
 echo -n -e "\033[32m请输入需要伪装的域名:\033[0m"
@@ -61,7 +61,7 @@ HEXVAL=$(xxd -pu <<< "$STR")
 hexdomain=${HEXVAL%0a}
 ip=$(curl -4 -k ip.sb)
 echo "开始注册mtproxy守护进程......"
-wget -q --no-check-certificate https://raw.githubusercontent.com/chummumm/one-key-mtp/master/mtproxy.service -O /etc/systemd/system/mtproxy.service
+wget -q --no-check-certificate https://raw.githubusercontent.com/SXR666/one-key-mtp/master/mtproxy.service -O /etc/systemd/system/mtproxy.service
 sed -i "s/mtprotoproxy.py/\/etc\/mtproxy\/mtprotoproxy.py/g" /etc/systemd/system/mtproxy.service
 systemctl daemon-reload
 systemctl enable mtproxy
@@ -78,4 +78,4 @@ echo -e "\033[32mtg://proxy?server=$ip&port=$num&secret=ee$secret$hexdomain\033[
 echo -e "\033[36mtg://proxy?server=$ip&port=$num&secret=dd$secret\033[0m" > /etc/mtproxy/secret
 echo -e "\033[36mtg://proxy?server=$ip&port=$num&secret=ee$secret$hexdomain\033[0m" >> /etc/mtproxy/secret
 echo -e "\033[36m后续查看配置信息可使用 cat /etc/mtproxy/secret\033[0m"
-echo "删除mtproxy及其守护进程请运行： wget --no-check-certificate https://raw.githubusercontent.com/chummumm/one-key-mtp/master/deletemtproxy.sh && bash deletemtproxy.sh"
+echo "删除mtproxy及其守护进程请运行： wget --no-check-certificate https://raw.githubusercontent.com/SXR666/one-key-mtp/master/deletemtproxy.sh && bash deletemtproxy.sh"
