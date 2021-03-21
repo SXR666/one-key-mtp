@@ -46,8 +46,6 @@ done
 echo "正在随机生成secret......"
 secret=$(head -c 16 /dev/urandom | xxd -ps)
 sed -i "s/012334sxr666456789fanqiang666def/$secret/g" /etc/mtproxy/config.py
-sed -i 's/"secure": False,/"secure": True,/g' /etc/mtproxy/config.py
-sed -i 's/AD_TAG/#AD_TAG/g' /etc/mtproxy/config.py
 echo -n -e "\033[32m请输入需要伪装的域名:\033[0m"
 read domain
 if [ ! -n "$domain" ]; then
